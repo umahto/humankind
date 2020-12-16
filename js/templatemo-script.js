@@ -1,12 +1,12 @@
 const initBg = (autoplay = true) => {
-    const bgImgsNames = ['diagoona-bg-1.jpg', 'diagoona-bg-2.jpg', 'diagoona-bg-3.jpg'];
+    const bgImgsNames = ['bg-1.jpg', 'bg-2.jpg', 'bg-3.jpg'];
     const bgImgs = bgImgsNames.map(img => "img/" + img);
 
     $.backstretch(bgImgs, {duration: 4000, fade: 500});
 
     if(!autoplay) {
-      $.backstretch('pause');  
-    }    
+      $.backstretch('pause');
+    }
 }
 
 const setBg = id => {
@@ -22,7 +22,7 @@ const setBgOverlay = () => {
 
     if(windowWidth > 768) {
         tmBgLeft.css('border-left', `0`)
-                .css('border-top', `${bgHeight}px solid transparent`);                
+                .css('border-top', `${bgHeight}px solid transparent`);
     } else {
         tmBgLeft.css('border-left', `${windowWidth}px solid transparent`)
                 .css('border-top', `0`);
@@ -31,21 +31,21 @@ const setBgOverlay = () => {
 
 $(document).ready(function () {
     const autoplayBg = true;	// set Auto Play for Background Images
-    initBg(autoplayBg);    
+    initBg(autoplayBg);
     setBgOverlay();
 
-    const bgControl = $('.tm-bg-control');            
+    const bgControl = $('.tm-bg-control');
     bgControl.click(function() {
         bgControl.removeClass('active');
         $(this).addClass('active');
-        const id = $(this).data('id');                
+        const id = $(this).data('id');
         setBg(id);
     });
 
-    $(window).on("backstretch.after", function (e, instance, index) {        
+    $(window).on("backstretch.after", function (e, instance, index) {
         const bgControl = $('.tm-bg-control');
         bgControl.removeClass('active');
-        const current = $(".tm-bg-controls-wrapper").find(`[data-id=${index}]`);        
+        const current = $(".tm-bg-controls-wrapper").find(`[data-id=${index}]`);
         current.addClass('active');
     });
 
